@@ -16,6 +16,9 @@
 		F424E1181AF649870067729C /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F424E1171AF649870067729C /* TwitterClient.swift */; };
 		F424E11B1AF649F10067729C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F424E11A1AF649F10067729C /* User.swift */; };
 		F424E11D1AF64A080067729C /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F424E11C1AF64A080067729C /* Tweet.swift */; };
+		F424E1221AF650E20067729C /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F424E1211AF650E20067729C /* TweetsViewController.swift */; };
+		F424E1261AF662DC0067729C /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F424E1241AF662DC0067729C /* TweetCell.swift */; };
+		F424E1271AF662DC0067729C /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F424E1251AF662DC0067729C /* TweetCell.xib */; };
 		FC8DD456D1A1917C73824FC2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42D47FB6FE8BE0FDE802DA77 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +50,9 @@
 		F424E11A1AF649F10067729C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F424E11C1AF64A080067729C /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		F424E11E1AF64A2C0067729C /* SimpleTwitter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SimpleTwitter-Bridging-Header.h"; sourceTree = "<group>"; };
+		F424E1211AF650E20067729C /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
+		F424E1241AF662DC0067729C /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
+		F424E1251AF662DC0067729C /* TweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,11 +114,13 @@
 		F424E0F31AF6488E0067729C /* SimpleTwitter */ = {
 			isa = PBXGroup;
 			children = (
+				F424E1231AF662C50067729C /* Views */,
 				F424E1191AF649D80067729C /* Models */,
 				F424E1161AF6496E0067729C /* API */,
 				F424E0F61AF6488E0067729C /* AppDelegate.swift */,
 				F424E0F81AF6488E0067729C /* ViewController.swift */,
 				F424E0FA1AF6488E0067729C /* Main.storyboard */,
+				F424E1211AF650E20067729C /* TweetsViewController.swift */,
 				F424E0FD1AF6488E0067729C /* Images.xcassets */,
 				F424E0FF1AF6488E0067729C /* LaunchScreen.xib */,
 				F424E0F41AF6488E0067729C /* Supporting Files */,
@@ -161,6 +169,15 @@
 				F424E11C1AF64A080067729C /* Tweet.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		F424E1231AF662C50067729C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F424E1241AF662DC0067729C /* TweetCell.swift */,
+				F424E1251AF662DC0067729C /* TweetCell.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +265,7 @@
 				F424E0FC1AF6488E0067729C /* Main.storyboard in Resources */,
 				F424E1011AF6488E0067729C /* LaunchScreen.xib in Resources */,
 				F424E0FE1AF6488E0067729C /* Images.xcassets in Resources */,
+				F424E1271AF662DC0067729C /* TweetCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +317,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F424E11B1AF649F10067729C /* User.swift in Sources */,
+				F424E1261AF662DC0067729C /* TweetCell.swift in Sources */,
 				F424E11D1AF64A080067729C /* Tweet.swift in Sources */,
+				F424E1221AF650E20067729C /* TweetsViewController.swift in Sources */,
 				F424E0F91AF6488E0067729C /* ViewController.swift in Sources */,
 				F424E1181AF649870067729C /* TwitterClient.swift in Sources */,
 				F424E0F71AF6488E0067729C /* AppDelegate.swift in Sources */,

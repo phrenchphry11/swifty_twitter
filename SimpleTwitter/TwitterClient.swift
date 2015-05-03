@@ -55,7 +55,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             requestToken: BDBOAuth1Credential(queryString: url.query),
             success: { (accessToken: BDBOAuth1Credential!) -> Void in
                 TwitterClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
-                
+            
                 TwitterClient.sharedInstance.GET(
                     "1.1/account/verify_credentials.json",
                     parameters: nil,
@@ -63,6 +63,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                         var user = User(dictionary: response as! NSDictionary)
                         User.currentUser = user
                         self.loginCompletion?(user: user, error: nil)
+                        println("success in login")
                     },
                     failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                         println("failed to get current user")
@@ -88,8 +89,9 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             parameters: params,
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
                 var tweets = Tweet.tweetWithArray(response as! [NSDictionary])
-                println(tweets)
                 completion(tweets: tweets, error: nil)
+                Tweet.timelineTweets = tweets
+
             },
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 completion(tweets: nil, error: error)
