@@ -21,4 +21,9 @@ class TweetCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setTweet(tweet: Tweet) {
+        println("setting tweet:")
+        println(tweet)
+    }
+    
 }

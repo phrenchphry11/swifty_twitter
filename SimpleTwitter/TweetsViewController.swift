@@ -47,14 +47,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("TweetCell") as! TweetCell
         
-        
-//        var business = self.businesses[indexPath.row]
-//        
-//        if (searchActive && filtered.count > 0) {
-//            business = self.filtered[indexPath.row]
-//        }
-//        
-//        cell.setBusiness(business)
+        var tweets = Tweet.timelineTweets
+        if let tweets = tweets {
+            var tweet = tweets[indexPath.row]
+            cell.setTweet(tweet)
+
+        }
+
         return cell
     }
     
