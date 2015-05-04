@@ -8,10 +8,11 @@
 
 import UIKit
 
-let TwitterColor = UIColor(red: 0.33203125, green: 0.671875, blue: 0.9296875, alpha: 1)
+let TwitterColor = UIColor(red: 0.3320, green: 0.6745, blue: 0.9333, alpha: 1)
 
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var tweet: Tweet?
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -30,6 +31,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
         self.title = "Twitter"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "onLogout")
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Plain, target: self, action: "onCompose")
         
         self.navigationController?.navigationBar.barTintColor = TwitterColor
         
@@ -66,6 +69,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        var tweets = Tweet.timelineTweets
+        self.tweet = tweets![indexPath.row]
         performSegueWithIdentifier("tweetViewSegue", sender: self)
 
     }
@@ -76,6 +81,17 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 150
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "tweetViewSegue") {
+            var individualTweetViewController = segue.destinationViewController as! IndividualTweetViewController
+            individualTweetViewController.tweet = self.tweet
+        }
+    }
+    
+    func onCompose() {
+        performSegueWithIdentifier("composeViewSegue", sender: self)
     }
 
 }

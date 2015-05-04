@@ -34,7 +34,7 @@ class TweetViewCell: UITableViewCell {
                 var url = NSURL(string: imageURL)!
                 self.userImageView.setImageWithURL(url)
                 self.usernameLabel.text = tweet.user?.name
-                self.twitterHandleLabel.text = tweet.user?.screenname
+                self.twitterHandleLabel.text = "@\(tweet.user!.screenname!)"
                 self.tweetTextLabel.text = tweet.text
     }
     

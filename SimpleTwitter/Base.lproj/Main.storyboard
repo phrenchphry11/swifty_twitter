@@ -50,22 +50,23 @@
                     <connections>
                         <outlet property="tableView" destination="8tK-lj-Kad" id="P5H-wF-04l"/>
                         <segue destination="iHn-Rr-reg" kind="push" identifier="tweetViewSegue" id="jM1-Th-5uc"/>
+                        <segue destination="Y1T-wP-OMM" kind="push" identifier="composeViewSegue" id="uP0-9w-D1S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kke-gr-6RA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1872" y="350"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="rl9-uI-lwn">
+        <!--Compose View Controller-->
+        <scene sceneID="jFV-pk-1af">
             <objects>
-                <viewController id="iHn-Rr-reg" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gdM-aa-VeK">
+                <viewController storyboardIdentifier="ComposeViewController" id="Y1T-wP-OMM" customClass="ComposeViewController" customModule="SimpleTwitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hB7-89-rlE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Individual tweet view" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="N2K-cv-NY9">
-                                <rect key="frame" x="80" y="273" width="160" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compose View" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Yf-Xb-Sla">
+                                <rect key="frame" x="95" y="235" width="116" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -74,7 +75,79 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="yxV-9Y-dtY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Klp-1C-REM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1872" y="1088"/>
+        </scene>
+        <!--Individual Tweet View Controller-->
+        <scene sceneID="rl9-uI-lwn">
+            <objects>
+                <viewController id="iHn-Rr-reg" customClass="IndividualTweetViewController" customModule="SimpleTwitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gdM-aa-VeK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="V0X-Af-YjU">
+                                <rect key="frame" x="16" y="79" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holly French" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kwd-xz-FG2">
+                                <rect key="frame" x="74" y="85" width="215" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@phrenchphry11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FTA-Xs-wgh">
+                                <rect key="frame" x="74" y="108" width="215" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here is a tweet." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RbC-u7-HFp">
+                                <rect key="frame" x="22" y="159" width="267" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KnA-KT-gkr">
+                                <rect key="frame" x="22" y="337" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Retweet">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onRetweet:" destination="iHn-Rr-reg" eventType="touchUpInside" id="WA3-Ei-Lda"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="F7k-hn-W51">
+                                <rect key="frame" x="153" y="337" width="56" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Favorite">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onFavorite:" destination="iHn-Rr-reg" eventType="touchUpInside" id="FDD-Er-PIO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <navigationItem key="navigationItem" id="PFz-CL-dEa"/>
+                    <connections>
+                        <outlet property="favoriteButton" destination="F7k-hn-W51" id="yb3-6K-SJf"/>
+                        <outlet property="retweetButton" destination="KnA-KT-gkr" id="3wC-Tt-6Dj"/>
+                        <outlet property="tweetTextLabel" destination="RbC-u7-HFp" id="4e3-sS-3kF"/>
+                        <outlet property="userImageView" destination="V0X-Af-YjU" id="WN1-Wx-Zxv"/>
+                        <outlet property="userNameLabel" destination="Kwd-xz-FG2" id="7Go-9q-Ja3"/>
+                        <outlet property="userTwitterHandleLabel" destination="FTA-Xs-wgh" id="b6x-ac-De4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PD1-U9-sz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

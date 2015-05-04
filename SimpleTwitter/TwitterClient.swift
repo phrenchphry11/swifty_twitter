@@ -99,4 +99,32 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         )
     }
     
+    func favorite(id: Int) {
+        TwitterClient.sharedInstance.POST(
+            "1.1/favorites/create.json",
+            parameters: ["id": id],
+            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                println("favorited tweet: \(id)")
+            },
+            failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("failed to favorite")
+                println(error)
+            }
+        )
+    }
+    
+    func retweet(id: Int) {
+        TwitterClient.sharedInstance.POST(
+            "1.1/statuses/retweet/\(id).json",
+            parameters: ["id": id],
+            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                println("retweeted tweet: \(id)")
+            },
+            failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("failed to retweet")
+                println(error)
+            }
+        )
+    }
+    
 }
