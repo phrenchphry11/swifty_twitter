@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func userDidLogout() {
-        println("User did log out")
         var vc = storyboard.instantiateInitialViewController() as! UIViewController
         window?.rootViewController = vc
     }

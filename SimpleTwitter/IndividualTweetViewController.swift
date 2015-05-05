@@ -34,16 +34,14 @@ class IndividualTweetViewController: UIViewController {
         var url = NSURL(string: imageURL)!
         self.userImageView.setImageWithURL(url)
         
-        if (tweet.favorited == true) {
-            println("favorited")
+        if (tweet.favorited == 1) {
             favoriteButton.enabled = false
-            favoriteButton.userInteractionEnabled = false
+            favoriteButton.alpha = 0.4
         }
         
-        if (tweet.retweeted == true) {
-            println("retweeted")
+        if (tweet.retweeted == 1) {
             retweetButton.enabled = false
-            retweetButton.userInteractionEnabled = false
+            retweetButton.alpha = 0.4
         }
     }
 
@@ -55,13 +53,13 @@ class IndividualTweetViewController: UIViewController {
     @IBAction func onRetweet(sender: AnyObject) {
         TwitterClient.sharedInstance.retweet(tweet!.statusId!)
         retweetButton.enabled = false
-        retweetButton.userInteractionEnabled = false
+        retweetButton.alpha = 0.4
         
     }
     @IBAction func onFavorite(sender: AnyObject) {
         TwitterClient.sharedInstance.favorite(tweet!.statusId!)
         favoriteButton.enabled = false
-        favoriteButton.userInteractionEnabled = false
+        favoriteButton.alpha = 0.4
     }
     
     /*

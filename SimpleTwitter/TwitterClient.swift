@@ -127,4 +127,19 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         )
     }
     
+    func composeTweet(text: String) {
+        TwitterClient.sharedInstance.POST(
+            "1.1/statuses/update.json",
+            parameters: ["status": text],
+            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                println("tweeted:")
+                println(text)
+            },
+            failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("failed to get current user")
+                println(error)
+            }
+        )
+    }
+    
 }

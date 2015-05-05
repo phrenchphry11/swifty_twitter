@@ -35,7 +35,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Plain, target: self, action: "onCompose")
         
         self.navigationController?.navigationBar.barTintColor = TwitterColor
-        
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +88,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         if (segue.identifier == "tweetViewSegue") {
             var individualTweetViewController = segue.destinationViewController as! IndividualTweetViewController
             individualTweetViewController.tweet = self.tweet
+        }
+        if (segue.identifier == "composeViewSegue") {
+            var composeViewController = segue.destinationViewController as! ComposeViewController
+            composeViewController.user = User.currentUser!
         }
     }
     

@@ -9,11 +9,28 @@
 import UIKit
 
 class ComposeViewController: UIViewController {
-
+    
+    var user: User!
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+    @IBOutlet weak var twitterHandleLabel: UILabel!
+    
+    @IBOutlet weak var userImageView: UIImageView!
+    
+    @IBOutlet weak var tweetTextField: UITextField!
+    
+    @IBOutlet weak var submitButton: UIButton!
+    
+    @IBOutlet weak var charactersAllowedLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        usernameLabel.text = user.name
+        twitterHandleLabel.text = user.screenname
+        var imageURL = user.profileImageURL!
+        var url = NSURL(string: imageURL)!
+        self.userImageView.setImageWithURL(url)
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,4 +49,8 @@ class ComposeViewController: UIViewController {
     }
     */
 
+    @IBAction func onSubmitTweet(sender: AnyObject) {
+        TwitterClient.sharedInstance.composeTweet(tweetTextField.text)
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
