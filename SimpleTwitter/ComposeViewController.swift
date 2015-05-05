@@ -51,6 +51,7 @@ class ComposeViewController: UIViewController {
 
     @IBAction func onSubmitTweet(sender: AnyObject) {
         TwitterClient.sharedInstance.composeTweet(tweetTextField.text)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("TweetsViewController") as! TweetsViewController
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

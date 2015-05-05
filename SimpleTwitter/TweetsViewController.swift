@@ -13,6 +13,7 @@ let TwitterColor = UIColor(red: 0.3320, green: 0.6745, blue: 0.9333, alpha: 1)
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var tweet: Tweet?
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -28,14 +29,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             Tweet.timelineTweets = tweets
             self.tableView.reloadData()
         })
-    
+        
         self.title = "Twitter"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "onLogout")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Plain, target: self, action: "onCompose")
         
         self.navigationController?.navigationBar.barTintColor = TwitterColor
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
     }
 

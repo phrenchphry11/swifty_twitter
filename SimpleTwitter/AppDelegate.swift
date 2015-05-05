@@ -18,9 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         if User.currentUser != nil {
+            
             // Go to the logged in screen.
-            var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as! UIViewController
-            window?.rootViewController = vc
+//            var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as! UIViewController
+            let mainViewController = self.storyboard.instantiateViewControllerWithIdentifier("MainNavController") as! UINavigationController
+            
+            window?.rootViewController = mainViewController
         }
         // Override point for customization after application launch.
         return true
@@ -54,7 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        println("some open url stuff")
         TwitterClient.sharedInstance.loginWithBlock(url)
         return true
     }

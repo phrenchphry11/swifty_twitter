@@ -18,6 +18,8 @@ class TweetViewCell: UITableViewCell {
     
     @IBOutlet weak var tweetTextLabel: UILabel!
     
+    @IBOutlet weak var timestampLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,6 +38,7 @@ class TweetViewCell: UITableViewCell {
                 self.usernameLabel.text = tweet.user?.name
                 self.twitterHandleLabel.text = "@\(tweet.user!.screenname!)"
                 self.tweetTextLabel.text = tweet.text
+                self.timestampLabel.text = tweet.createdAtString
     }
     
 }

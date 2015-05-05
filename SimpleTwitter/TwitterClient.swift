@@ -142,4 +142,21 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         )
     }
     
+    func reply(text: String, id: Int) {
+        TwitterClient.sharedInstance.POST(
+            "1.1/statuses/update.json",
+            parameters: [
+                "status": text,
+                "in_reply_to_status_id": id
+            ],
+            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                println("replied to tweet")
+            },
+            failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("failed reply")
+                println(error)
+            }
+        )
+    }
+    
 }
