@@ -42,7 +42,6 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             var authURL = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")
             UIApplication.sharedApplication().openURL(authURL!)
             }, failure: { (error: NSError!) -> Void in
-                println("FAILED TO GET THE REQUEST TOKEN")
                 self.loginCompletion?(user: nil, error: error)
         })
         
@@ -63,10 +62,8 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                         var user = User(dictionary: response as! NSDictionary)
                         User.currentUser = user
                         self.loginCompletion?(user: user, error: nil)
-                        println("success in login")
                     },
                     failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                        println("failed to get current user")
                         self.loginCompletion?(user: nil, error: error)
                     }
                 )
@@ -77,7 +74,6 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                 
             },
             failure: { (error: NSError!) -> Void in
-                println("Failed to get the access token")
                 self.loginCompletion?(user: nil, error: error)
             }
         )
@@ -91,7 +87,6 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                 var tweets = Tweet.tweetWithArray(response as! [NSDictionary])
                 completion(tweets: tweets, error: nil)
                 Tweet.timelineTweets = tweets
-
             },
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 completion(tweets: nil, error: error)
@@ -104,11 +99,8 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             "1.1/favorites/create.json",
             parameters: ["id": id],
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-                println("favorited tweet: \(id)")
             },
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                println("failed to favorite")
-                println(error)
             }
         )
     }
@@ -118,11 +110,8 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
             "1.1/statuses/retweet/\(id).json",
             parameters: ["id": id],
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-                println("retweeted tweet: \(id)")
             },
             failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                println("failed to retweet")
-                println(error)
             }
         )
     }

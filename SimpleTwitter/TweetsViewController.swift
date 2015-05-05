@@ -14,6 +14,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
     var tweet: Tweet?
     
+    var refreshControl: UIRefreshControl!
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -25,19 +27,35 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        TwitterClient.sharedInstance.getHomeFeed(nil, completion: { (tweets, error) -> () in
-            Tweet.timelineTweets = tweets
-            self.tableView.reloadData()
-        })
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Loading tweets...")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
         
         self.title = "Twitter"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: "onLogout")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Plain, target: self, action: "onCompose")
-        
         self.navigationController?.navigationBar.barTintColor = TwitterColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        TwitterClient.sharedInstance.getHomeFeed(nil, completion: { (tweets, error) -> () in
+            Tweet.timelineTweets = tweets
+            self.tableView.reloadData()
+        })
+    }
+    
+    func refresh(sender:AnyObject)
+    {
+        // Code to refresh table view
+        TwitterClient.sharedInstance.getHomeFeed(nil, completion: { (tweets, error) -> () in
+            Tweet.timelineTweets = tweets
+            self.refreshControl.endRefreshing()
+            self.tableView.reloadData()
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,8 +66,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var tweets = Tweet.timelineTweets
         if let tweets = tweets {
-            println("Count:")
-            println(Tweet.timelineTweets!.count)
             return Tweet.timelineTweets!.count
         }
         return 0

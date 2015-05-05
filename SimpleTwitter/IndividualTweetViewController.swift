@@ -24,16 +24,17 @@ class IndividualTweetViewController: UIViewController {
     
     @IBOutlet weak var favoriteButton: UIButton!
     
+    @IBOutlet weak var replyButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         userNameLabel.text = tweet.user!.name
         userTwitterHandleLabel.text = "@\(tweet.user!.screenname!)"
         tweetTextLabel.text = tweet.text
         var imageURL = tweet.user!.profileImageURL!
         var url = NSURL(string: imageURL)!
         self.userImageView.setImageWithURL(url)
-        
+
         if (tweet.favorited == 1) {
             favoriteButton.enabled = false
             favoriteButton.alpha = 0.4
@@ -62,14 +63,16 @@ class IndividualTweetViewController: UIViewController {
         favoriteButton.alpha = 0.4
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func onReply(sender: AnyObject) {
+        performSegueWithIdentifier("replySegue", sender: self)
     }
-    */
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "replySegue") {
+            var composeViewController = segue.destinationViewController as! ComposeViewController
+            composeViewController.user = User.currentUser!
+            composeViewController.tweet = self.tweet
+        }
+    }
 
 }
