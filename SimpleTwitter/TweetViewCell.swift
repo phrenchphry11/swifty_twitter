@@ -38,7 +38,7 @@ class TweetViewCell: UITableViewCell {
                 self.usernameLabel.text = tweet.user?.name
                 self.twitterHandleLabel.text = "@\(tweet.user!.screenname!)"
                 self.tweetTextLabel.text = tweet.text
-                self.timestampLabel.text = tweet.createdAtString
+                self.timestampLabel.text = tweet.createdAt!.timeAgoSinceNow()
     }
     
 }
