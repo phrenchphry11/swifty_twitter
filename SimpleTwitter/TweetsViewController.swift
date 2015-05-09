@@ -38,6 +38,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Plain, target: self, action: "onCompose")
         self.navigationController?.navigationBar.barTintColor = TwitterColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        if self.revealViewController() != nil {
+            println("HELLO")
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

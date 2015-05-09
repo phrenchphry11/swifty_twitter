@@ -20,10 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.currentUser != nil {
             
             // Go to the logged in screen.
-//            var vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as! UIViewController
             let mainViewController = self.storyboard.instantiateViewControllerWithIdentifier("MainNavController") as! UINavigationController
             
-            window?.rootViewController = mainViewController
+            let hamburgerMenu = self.storyboard.instantiateViewControllerWithIdentifier("HamburgerNavController") as! SWRevealViewController
+            
+            window?.rootViewController = hamburgerMenu
+            
+            hamburgerMenu.pushFrontViewController(mainViewController, animated: true)
         }
         // Override point for customization after application launch.
         return true
