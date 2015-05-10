@@ -40,7 +40,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         if self.revealViewController() != nil {
-            println("HELLO")
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
     }
