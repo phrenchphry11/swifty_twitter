@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol TweetCellDelegate : class {
+    func didClickUserImage(tweetCell: TweetViewCell, tweetUser: User)
+}
+
 class TweetViewCell: UITableViewCell {
 
+    var tweetUser: User!
+    
     @IBOutlet weak var userImageView: UIImageView!
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -20,25 +26,35 @@ class TweetViewCell: UITableViewCell {
     
     @IBOutlet weak var timestampLabel: UILabel!
     
+    var tapGestureRecognizer: UITapGestureRecognizer!
+    
+    weak var delegate: TweetCellDelegate? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func setTweet(tweet: Tweet) {
-                var imageURL = tweet.user!.profileImageURL!
-                var url = NSURL(string: imageURL)!
-                self.userImageView.setImageWithURL(url)
-                self.usernameLabel.text = tweet.user?.name
-                self.twitterHandleLabel.text = "@\(tweet.user!.screenname!)"
-                self.tweetTextLabel.text = tweet.text
-                self.timestampLabel.text = tweet.createdAt!.timeAgoSinceNow()
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "goToUserProfile:")
+
+        var imageURL = tweet.user!.profileImageURL!
+        var url = NSURL(string: imageURL)!
+        self.userImageView.setImageWithURL(url)
+        self.usernameLabel.text = tweet.user?.name
+        self.twitterHandleLabel.text = "@\(tweet.user!.screenname!)"
+        self.tweetTextLabel.text = tweet.text
+        self.timestampLabel.text = tweet.createdAt!.timeAgoSinceNow()
+        self.userImageView.addGestureRecognizer(tapGestureRecognizer!)
+        self.tweetUser = tweet.user!
     }
     
+    func goToUserProfile(tapGestureRecognizer: UITapGestureRecognizer) {
+        self.delegate!.didClickUserImage(self, tweetUser: self.tweetUser)
+    }
+
 }

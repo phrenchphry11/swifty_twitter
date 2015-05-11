@@ -10,9 +10,11 @@ import UIKit
 
 let TwitterColor = UIColor(red: 0.3320, green: 0.6745, blue: 0.9333, alpha: 1)
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate {
 
     var tweet: Tweet?
+    
+    var tweetUser: User?
     
     var refreshControl: UIRefreshControl!
     
@@ -79,6 +81,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("TweetViewCell") as! TweetViewCell
         
+        cell.delegate = self
+        
         var tweets = Tweet.timelineTweets
         if let tweets = tweets {
             var tweet = tweets[indexPath.row]
@@ -114,10 +118,20 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             var composeViewController = segue.destinationViewController as! ComposeViewController
             composeViewController.user = User.currentUser!
         }
+        
+        if (segue.identifier == "userProfileViewSegue") {
+            var userProfileViewController = segue.destinationViewController as! UserViewController
+            userProfileViewController.user = self.tweetUser
+        }
     }
     
     func onCompose() {
         performSegueWithIdentifier("composeViewSegue", sender: self)
+    }
+    
+    func didClickUserImage(tweetCell: TweetViewCell, tweetUser: User) {
+        self.tweetUser = tweetUser
+        performSegueWithIdentifier("userProfileViewSegue", sender: self)
     }
 
 }
