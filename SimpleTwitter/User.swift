@@ -18,6 +18,7 @@ class User: NSObject {
     var name: String?
     var screenname: String?
     var profileImageURL: String?
+    var bannerURL: String?
     var tagline: String?
     var followersCount: Int?
     var followingCount: Int?
@@ -34,6 +35,7 @@ class User: NSObject {
         followersCount = dictionary["followers_count"] as? Int
         followingCount = dictionary["friends_count"] as? Int
         bio = dictionary["description"] as? String
+        bannerURL = dictionary["profile_banner_url"] as? String
     }
     
     func logout() {
